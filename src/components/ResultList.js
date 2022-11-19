@@ -11,12 +11,15 @@ const ResultList = ({ xdata }) => {
     renderItem={(item) => (
       <List.Item style={{ width: '70vw', background : bgColor(item.status), margin:10 }}>
         <List.Item.Meta
-          title={<a href="https://ant.design">{item.name}</a>}
+          title={item.name}
           description={
-            <span>
-            <i>{item.status == '1' ? 'Boleh Dikonsumsi' : item.status=="-1" ? 'Dianjurkan Tidak dikonsumsi' : ''}</i> <br/>
-              Ukuran : {item.size ?? "-"} <br />
+              <span>
+                Nomor Izin Edar : {item.no_ie ?? "-"} <br />
+                Ukuran : {item.size ?? "-"} <br />
+                Bentuk Sediaan : {item.sediaan ?? "-"} <br />
+                Indikasi : {item.indikasi ?? "-"} <br />
               Produsen : {item.prinsipal ?? "-"} <br/>
+            <i>{item.status == '1' ? 'Boleh Dikonsumsi' : item.status=="-1" ? 'Dianjurkan Tidak dikonsumsi' : ''}</i> <br/>
               Referensi : {item.link ? <a href={`http://${item.link}`}>{item.ref ?? '-'} </a> : item.ref ?? '-'}
             </span>
           }
