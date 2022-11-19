@@ -9,8 +9,10 @@ const SearchField = ({ eventOnSelect, eventOnChange, data }) => {
     setOptions(!searchText ? [] : getNameData(SearchSimilar({search : searchText ?? '', data: data})))
   }
   const onSelect = (data) => {
-    console.log('onSelect', data)
-    eventOnSelect(data)
+      const selected = data.slice(0, data.indexOf(' *#'))
+      console.log('onSelect', selected)
+      setValue(selected)
+    eventOnSelect(selected)
   }
   const onChange = (data) => {
     setValue(data)
@@ -26,6 +28,7 @@ const SearchField = ({ eventOnSelect, eventOnChange, data }) => {
         onSelect={onSelect}
         onChange={onChange}
         onSearch={onSearch}
+        value = {value}
         placeholder="Masukkan syrup yg ingin dicek"
       />
       <br />
@@ -35,7 +38,14 @@ const SearchField = ({ eventOnSelect, eventOnChange, data }) => {
 }
 
 const getNameData = (datas) => {
-    return datas.map((item) => ({value : item.name})).slice(0,7);
+    let counter = 0;
+    const data = datas.map((item) => {
+        counter++;
+        return {
+        label : item.name,
+        value : `${item.name} *#${counter}`,
+    }}).slice(0,7);
+    return data;
 }
 
 export default SearchField

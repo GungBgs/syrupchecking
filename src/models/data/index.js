@@ -8,7 +8,6 @@ const GetData = new Promise(function(resolve, reject) {
         download: true,
         header: true,
         complete: function(response) {
-            console.log(response.data)
             resolve(response.data);
         },
         error: function(err) {

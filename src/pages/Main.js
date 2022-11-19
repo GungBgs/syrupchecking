@@ -26,7 +26,6 @@ function Main() {
   useEffect(() => {
     GetData.then((v) => {
       setData(v)
-      console.log(data)
     })
   }, [])
 
