@@ -1,20 +1,18 @@
 import React, { useState } from 'react'
 import { AutoComplete } from 'antd'
-const mockVal = (str, repeat = 1) => ({
-  value: str.repeat(repeat),
-})
-const SearchField = ({ eventOnSelect, eventOnChange }) => {
+import SearchSimilar from './atoms/SearchSimilar';
+
+const SearchField = ({ eventOnSelect, eventOnChange, data }) => {
   const [value, setValue] = useState('')
   const [options, setOptions] = useState([])
   const onSearch = (searchText) => {
-    setOptions(!searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)])
+    setOptions(!searchText ? [] : getNameData(SearchSimilar({search : searchText ?? '', data: data})))
   }
   const onSelect = (data) => {
     console.log('onSelect', data)
     eventOnSelect(data)
   }
   const onChange = (data) => {
-    // console.log('onchange', data)
     setValue(data)
     eventOnChange(data)
   }
@@ -28,12 +26,16 @@ const SearchField = ({ eventOnSelect, eventOnChange }) => {
         onSelect={onSelect}
         onChange={onChange}
         onSearch={onSearch}
-        placeholder="input here"
+        placeholder="Masukkan syrup yg ingin dicek"
       />
       <br />
       <br />
     </>
   )
+}
+
+const getNameData = (datas) => {
+    return datas.map((item) => ({value : item.name})).slice(0,7);
 }
 
 export default SearchField

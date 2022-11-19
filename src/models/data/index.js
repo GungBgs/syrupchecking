@@ -1,36 +1,17 @@
-const data = [
-    {
-    name : "sanmol syrup",
-    size : "60mL",
-    prinsipal : "sanbe",
-    status : 1,
-    ref : 'lampiran 2 BPOM 17 November',
-    link : 'google.com'
-},
-    {
-    name : "Ambroxol syrup",
-    size : "60mL",
-    prinsipal : "Erla",
-    status : 1,
-    ref : 'lampiran 1 BPOM 17 November',
-    link : 'google.com'
-},
-    {
-    name : "Fasidol syr syrup",
-    size : "60mL",
-    prinsipal : "Ifars",
-    status : 0,
-    // ref : 'lampiran 1 BPOM 17 November',
-    // link : 'google.com'
-},
-    {
-    name : "Parasetamol syr syrup",
-    size : "60mL",
-    prinsipal : "Afi Farma",
-    status : -1,
-    ref : 'lampiran 1 BPOM 1 November',
-    link : 'google.com'
-},
-]
+import Papa from 'papaparse'
+const urlCsv = '/datas.csv'
 
-export default data;
+const GetData = new Promise(function(resolve, reject) {
+    Papa.parse(urlCsv, {
+        download: true,
+        header: true,
+        complete: function(response) {
+            resolve(response.data);
+        },
+        error: function(err) {
+            reject(err);
+        }
+    });
+});
+
+export default GetData
