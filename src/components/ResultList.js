@@ -18,9 +18,15 @@ const ResultList = ({ xdata }) => {
                 Ukuran : {item.size ?? "-"} <br />
                 Bentuk Sediaan : {item.sediaan ?? "-"} <br />
                 Indikasi : {item.indikasi ?? "-"} <br />
+                {item.kandungan ? <>Indikasi : {item.indikasi ?? "-"} <br /></> : ''}
               Produsen : {item.prinsipal ?? "-"} <br/>
+              <br/>
             <i>{item.status == '1' ? 'Boleh Dikonsumsi' : item.status=="-1" ? 'Dianjurkan Tidak dikonsumsi' : ''}</i> <br/>
-              Referensi : {item.link ? <a href={`http://${item.link}`}>{item.ref ?? '-'} </a> : item.ref ?? '-'}
+              Referensi : 
+                <ul>
+              {item.ref ? <li><a href={`http://${item.link}`}>{item.ref ?? '-'} </a></li> : ''}
+              {item.ref2 ? <li><a href={`http://${item.link2}`}>{item.ref2 ?? '-'} </a></li> : ''}
+                </ul>
             </span>
           }
         />

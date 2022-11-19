@@ -61,13 +61,13 @@ function Main() {
             </Title>
           )}
         </Row>
-        {refresh ? (
+        {/* {refresh ? (
           <Row justify={'center'}>
             <AdsBanner />
           </Row>
         ) : (
           <></>
-        )}
+        )} */}
       </Content>
       <Footer
         style={{
